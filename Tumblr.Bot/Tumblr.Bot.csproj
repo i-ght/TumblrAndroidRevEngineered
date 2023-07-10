@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0ECBB4B7-EC40-43F5-88FF-0F1B8654956F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Tumblr.Bot</RootNamespace>
+    <AssemblyName>Tumblr.Bot</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Akka, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Akka.1.3.1\lib\net45\Akka.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.105.2, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.105.2\lib\net451\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Exceptions\TooManySendMessageErrors.cs" />
+    <Compile Include="Helpers\ContactStreamHelpers.cs" />
+    <Compile Include="Enums\ChatLogMessageDirection.cs" />
+    <Compile Include="Enums\MessageSenderActorBehaviorState.cs" />
+    <Compile Include="Exceptions\SendMessageFailedException.cs" />
+    <Compile Include="OutgoingMessages\OutgoingMessage.cs" />
+    <Compile Include="OutgoingMessages\OutgoingMessageFlags.cs" />
+    <Compile Include="OutgoingMessages\PendingCancelableOutgoingMessage.cs" />
+    <Compile Include="OutgoingMessages\ScriptWaifu.cs" />
+    <Compile Include="Shikaka\Actors\Supervisor\ChatLogAppender\ChatLogAppenderActor.cs" />
+    <Compile Include="Shikaka\Actors\Supervisor\ContactReader\ContactReaderActor.cs" />
+    <Compile Include="Shikaka\Actors\Supervisor\Worker\Connector\ConnectorActor.cs" />
+    <Compile Include="Shikaka\Actors\Supervisor\Worker\ConversationRetriever\ConversationRetrieverActor.cs" />
+    <Compile Include="Shikaka\Actors\Supervisor\Worker\ConversationsRetriever\ConversationsRetrieverActor.cs" />
+    <Compile Include="Shikaka\Actors\Supervisor\Worker\GreetSessionHandler\GreetSessionHandlerActor.cs" />
+    <Compile Include="Shikaka\Actors\Supervisor\Worker\MessageSender\MessageSenderActor.cs" />
+    <Compile Include="Shikaka\Actors\Supervisor\Worker\SessionChecker\SessionCheckerActor.cs" />
+    <Compile Include="Shikaka\ChildActorContainers\WorkerChildActorsContainer.cs" />
+    <Compile Include="Shikaka\Messages\ChatLogAppender\AppendChatLogMessage.cs" />
+    <Compile Include="Shikaka\Messages\Connector\AttemptToConnectMessage.cs" />
+    <Compile Include="Shikaka\Messages\ContactReader\AdvanceContactStreamReaderToAnItemNotBlacklistedMessage.cs" />
+    <Compile Include="Shikaka\Messages\ContactReader\GetNextContactMessage.cs" />
+    <Compile Include="Shikaka\Messages\ConversationRetriever\RetrieveConversationMessage.cs" />
+    <Compile Include="Shikaka\Messages\ConversationsRetriever\RetrieveConversationsMessage.cs" />
+    <Compile Include="Shikaka\Messages\GreetSessionHandler\EnqueueNextGreetMessage.cs" />
+    <Compile Include="Shikaka\Messages\GreetSessionHandler\StartOrResumeGreetSessionMessage.cs" />
+    <Compile Include="Shikaka\Messages\MessageSender\ReadyToSendMessagesMessage.cs" />
+    <Compile Include="Shikaka\Messages\MessageSender\ScheduleOutgoingMessageMessage.cs" />
+    <Compile Include="Shikaka\Messages\MessageSender\SendOutgoingMessageMessage.cs" />
+    <Compile Include="Shikaka\Messages\SessionChecker\AttemptCheckSessionMessage.cs" />
+    <Compile Include="Shikaka\Messages\SQLite\AddChatBlacklistEntityMessage.cs" />
+    <Compile Include="Shikaka\Messages\SQLite\AddGreetBlacklistEntityMessage.cs" />
+    <Compile Include="Shikaka\Messages\SQLite\AddNewConvoEntityMessage.cs" />
+    <Compile Include="Shikaka\Messages\SQLite\UpdateConvoEntityMessage.cs" />
+    <Compile Include="Shikaka\Messages\Supervisor\StartAppSessionMessage.cs" />
+    <Compile Include="Shikaka\Messages\Supervisor\TellContactReaderAdvanceContactStreamReaderToAnItemNotBlacklistedMessage.cs" />
+    <Compile Include="Shikaka\Messages\Worker\ConnectionAttemptSucceededMessage.cs" />
+    <Compile Include="Shikaka\Messages\Worker\ConnectionPermitGrantedMessage.cs" />
+    <Compile Include="Shikaka\Messages\Worker\ConversationsRetrievedMessage.cs" />
+    <Compile Include="Shikaka\Messages\GreetSessionHandler\TellMessageSenderSendMessageMessage.cs" />
+    <Compile Include="Shikaka\Messages\GreetSessionHandler\ContactMessage.cs" />
+    <Compile Include="Shikaka\Messages\Worker\MessageSentSuccessfullyMessage.cs" />
+    <Compile Include="Shikaka\Messages\Worker\SendMessageFailedMessage.cs" />
+    <Compile Include="Shikaka\Messages\Worker\SessionOkMessage.cs" />
+    <Compile Include="Shikaka\Messages\Worker\StartConnectingMessage.cs" />
+    <Compile Include="Shikaka\PropsContainers\ChatLogAppenderPropsContainer.cs" />
+    <Compile Include="Shikaka\PropsContainers\ConnectorPropsContainer.cs" />
+    <Compile Include="Shikaka\PropsContainers\ContactReaderPropsContainer.cs" />
+    <Compile Include="Shikaka\PropsContainers\ConversationRetrieverPropsContainer.cs" />
+    <Compile Include="Shikaka\PropsContainers\ConversationsRetrieverPropsContainer.cs" />
+    <Compile Include="Shikaka\PropsContainers\GreetSessionHandlerPropsContainer.cs" />
+    <Compile Include="Shikaka\PropsContainers\MessageSenderPropsContainer.cs" />
+    <Compile Include="Shikaka\PropsContainers\SessionCheckerPropsContainer.cs" />
+    <Compile Include="Shikaka\PropsContainers\SQLitePropsContainer.cs" />
+    <Compile Include="Shikaka\StateContainers\ConversationsRetrieverStateContainer.cs" />
+    <Compile Include="Exceptions\ConnectionFailedException.cs" />
+    <Compile Include="Exceptions\ConversationsRetrievalException.cs" />
+    <Compile Include="Exceptions\DeadProxyException.cs" />
+    <Compile Include="Exceptions\SessionCheckFailedException.cs" />
+    <Compile Include="Exceptions\TooManyLoginErrorsException.cs" />
+    <Compile Include="Shikaka\StateContainers\GreetSessionHandlerStateContainer.cs" />
+    <Compile Include="Shikaka\StateContainers\MessageSenderStateContainer.cs" />
+    <Compile Include="SQLite\AccessProviders\ChatBlacklistDbTableAccessProvider.cs" />
+    <Compile Include="SQLite\AccessProviders\ConversationStatesDbTableAccessProvider.cs" />
+    <Compile Include="SQLite\AccessProviders\GreetBlacklistDbTableAccessProvider.cs" />
+    <Compile Include="SQLite\AccessProviders\ScriptsDbTableAccessProvider.cs" />
+    <Compile Include="SQLite\DbHelpers.cs" />
+    <Compile Include="SQLite\Entities\BlacklistItemEntity.cs" />
+    <Compile Include="SQLite\Entities\ConversationStateEntity.cs" />
+    <Compile Include="SQLite\Entities\ScriptEntity.cs" />
+    <Compile Include="SQLite\SQLiteDb.cs" />
+    <Compile Include="SQLite\SQLiteTableFactory.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Shikaka\Actors\Supervisor\ConnectionPermitGranter\ConnectionPermitGranterActor.cs" />
+    <Compile Include="Shikaka\Actors\Supervisor\ExceptionLogger\ExceptionLoggerActor.cs" />
+    <Compile Include="Shikaka\Actors\Supervisor\GlobalStatsUpdater\GlobalStatsUpdaterActor.cs" />
+    <Compile Include="Shikaka\Actors\Supervisor\SQLite\SQLiteActor.cs" />
+    <Compile Include="Shikaka\Actors\Supervisor\SupervisorActor.cs" />
+    <Compile Include="Shikaka\Actors\Supervisor\Worker\WorkerActor.cs" />
+    <Compile Include="Shikaka\ChildActorContainers\SupervisorChildActorsContainer.cs" />
+    <Compile Include="Shikaka\PropsContainers\WorkerPropsContainer.cs" />
+    <Compile Include="Enums\IncrementOrDecrement.cs" />
+    <Compile Include="Enums\WorkerState.cs" />
+    <Compile Include="Enums\StatKind.cs" />
+    <Compile Include="Shikaka\Messages\ConnectionPermitGranter\RelenquishConnectionPermitMessage.cs" />
+    <Compile Include="Shikaka\Messages\ConnectionPermitGranter\RequestConnectionPermitMessage.cs" />
+    <Compile Include="Shikaka\Messages\ExceptionLogger\LogExceptionMessage.cs" />
+    <Compile Include="Shikaka\Messages\GlobalStatsUpdater\UpdateGlobalStatMessage.cs" />
+    <Compile Include="Shikaka\PropsContainers\ConnectionPermitGranterPropsContainer.cs" />
+    <Compile Include="Shikaka\PropsContainers\GlobalStatsUpdaterPropsContainer.cs" />
+    <Compile Include="Shikaka\PropsContainers\SupervisorPropsContainer.cs" />
+    <Compile Include="Shikaka\StateContainers\ConnectionPermitGranterStateContainer.cs" />
+    <Compile Include="Shikaka\StateContainers\GlobalStatsUpdaterStateContainer.cs" />
+    <Compile Include="Shikaka\StateContainers\WorkerStateContainer.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Collections.cs" />
+    <Compile Include="UserInterface\Constants.cs" />
+    <Compile Include="UserInterface\DataGridItem.cs" />
+    <Compile Include="UserInterface\GlobalStats.cs" />
+    <Compile Include="UserInterface\LocalStats.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DankWaifus\Waifu.Collections\Waifu.Collections.csproj">
+      <Project>{07c455b6-ede5-4aac-81e5-7ea5b61bc1c8}</Project>
+      <Name>Waifu.Collections</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DankWaifus\Waifu.MobileDevice\Waifu.MobileDevice.csproj">
+      <Project>{cf0c210b-f613-49a4-94c0-baedf047a2e6}</Project>
+      <Name>Waifu.MobileDevice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DankWaifus\Waifu.Net\Waifu.Net.csproj">
+      <Project>{ec542b25-f8c4-42c8-b19e-63e36522b794}</Project>
+      <Name>Waifu.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DankWaifus\Waifu.OAuth\Waifu.OAuth.csproj">
+      <Project>{43b72e08-fd56-4606-a662-80af5165b0d9}</Project>
+      <Name>Waifu.OAuth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DankWaifus\Waifu.SQLite\Waifu.SQLite.csproj">
+      <Project>{51f848d5-f4ad-4637-ac25-9d1ba41f2175}</Project>
+      <Name>Waifu.SQLite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DankWaifus\Waifu.Sys\Waifu.Sys.csproj">
+      <Project>{95fc498e-6e32-4359-bc1f-be237662b1aa}</Project>
+      <Name>Waifu.Sys</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DankWaifus\Waifu.WPF\Waifu.WPF.csproj">
+      <Project>{c3d92ccb-a2c3-4b10-9fec-61baf476404c}</Project>
+      <Name>Waifu.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tumblr.Waifu\Tumblr.Waifu.csproj">
+      <Project>{d890a714-b2f8-4ada-aff6-4bdd0e197f9d}</Project>
+      <Name>Tumblr.Waifu</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets'))" />
+  </Target>
+</Project>

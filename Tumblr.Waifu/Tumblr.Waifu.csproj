@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D890A714-B2F8-4ADA-AFF6-4BDD0E197F9D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tumblr.Waifu</RootNamespace>
+    <AssemblyName>Tumblr.Waifu</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BCookieFactory.cs" />
+    <Compile Include="Exceptions\TumblrSessionNotAuthorizedException.cs" />
+    <Compile Include="JsonObjects\RetrieveBlogInfoTumblrApiResponse.cs" />
+    <Compile Include="JsonObjects\RetrieveConversationsTumblrApiResponse.cs" />
+    <Compile Include="JsonObjects\RetrieveConversationTumblrApiResponse.cs" />
+    <Compile Include="JsonObjects\RetrieveNoticesTumblrApiResponse.cs" />
+    <Compile Include="JsonObjects\RetrieveSearchResultsTumblrApiResponse.cs" />
+    <Compile Include="JsonObjects\RetrieveTagsTumblrApiRepsonse.cs" />
+    <Compile Include="JsonObjects\RetrieveTopicsTumblrApiResponse.cs" />
+    <Compile Include="JsonObjects\RetrieveUnreadMessagesCountTumblrApiResponse.cs" />
+    <Compile Include="JsonObjects\RetrieveUserInfoTumblrApiResponse.cs" />
+    <Compile Include="JsonObjects\TumblrApiResponseMeta.cs" />
+    <Compile Include="TumblrOAuthSessionCreator.cs" />
+    <Compile Include="OAuthSession.cs" />
+    <Compile Include="TumblrAccount.cs" />
+    <Compile Include="TumblrAndroidDevice.cs" />
+    <Compile Include="TumblrClient.cs" />
+    <Compile Include="TumblrConstants.cs" />
+    <Compile Include="Crypto.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TumblrHelpers.cs" />
+    <Compile Include="TumblrSessionInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DankWaifus\Waifu.Collections\Waifu.Collections.csproj">
+      <Project>{07C455B6-EDE5-4AAC-81E5-7EA5B61BC1C8}</Project>
+      <Name>Waifu.Collections</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DankWaifus\Waifu.MobileDevice\Waifu.MobileDevice.csproj">
+      <Project>{CF0C210B-F613-49A4-94C0-BAEDF047A2E6}</Project>
+      <Name>Waifu.MobileDevice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DankWaifus\Waifu.Net\Waifu.Net.csproj">
+      <Project>{EC542B25-F8C4-42C8-B19E-63E36522B794}</Project>
+      <Name>Waifu.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DankWaifus\Waifu.OAuth\Waifu.OAuth.csproj">
+      <Project>{43B72E08-FD56-4606-A662-80AF5165B0D9}</Project>
+      <Name>Waifu.OAuth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DankWaifus\Waifu.Sys\Waifu.Sys.csproj">
+      <Project>{95FC498E-6E32-4359-BC1F-BE237662B1AA}</Project>
+      <Name>Waifu.Sys</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
